@@ -5,7 +5,7 @@ const NavBar = () => {
     <header>
       <div className="containter">
         <Link to="/">
-          <h1>Take Notes App</h1>
+          <h1>Take Notes App with MERN Stack</h1>
         </Link>
       </div>
     </header>
