@@ -40,7 +40,7 @@ header a {
 }
 .notes-details {
   background: #fff;
-  border-radius: 4px;
+  border-radius: 5px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
@@ -66,4 +66,31 @@ header a {
   padding: 6px;
   border-radius: 50%;
   color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 5px;
+  padding: 10px;
+}
+
+input,
+textarea {
+  border-radius: 5px;
+  border: none;
+  padding: 2px, 5px;
+}
+
+form button {
+  font-family: Itim, cursive;
+  background: var(--primary);
+  border-radius: 5px;
+  border: none;
+  padding: 10px;
+}
+div.error {
+  padding: 10px;
+  color: var(--error);
 }
