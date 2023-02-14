@@ -25,6 +25,21 @@ const getNote = async (req, res) => {
 //create a new note
 const createNote = async (req, res) => {
   const { title, text } = req.body;
+
+  let emptyFields = [];
+  if (!title) {
+    emptyFields.push("title");
+  }
+  if (!text) {
+    emptyFields.push("text");
+  }
+  if (emptyFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: "Please fill in all the fields", emptyFields });
+  }
+
+  //add to the database
   try {
     //creating a new document with model that was created in the model folder with database schema
     const note = await Note.create({ title, text });
@@ -32,7 +47,6 @@ const createNote = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-  res.json({ msg: "Post new note" });
 };
 
 //delete a note

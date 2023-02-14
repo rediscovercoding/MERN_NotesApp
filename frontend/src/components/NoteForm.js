@@ -6,7 +6,7 @@ const NoteForm = () => {
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [error, setError] = useState(null);
-
+  const [emptyFields, setEmptyFields] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const note = { title, text };
@@ -20,12 +20,13 @@ const NoteForm = () => {
     const json = await response.json();
     if (!response.ok) {
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     }
     if (response.ok) {
-      console.log("Note added successfully", json);
       setTitle("");
       setText("");
       setError(null);
+      setEmptyFields([]);
       dispatch({ type: "CREATE_NOTE", payload: json });
     }
   };
@@ -34,7 +35,7 @@ const NoteForm = () => {
       <h3>Add New Note</h3>
       <label>Note Title</label>
       <input
-        className="inputTitle"
+        className={emptyFields.includes("title") ? "error" : ""}
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
@@ -43,6 +44,7 @@ const NoteForm = () => {
       <label htmlFor="textArea">Text</label>
       <textarea
         id="textArea"
+        className={emptyFields.includes("text") ? "error" : ""}
         rows="4"
         cols="25"
         onChange={(e) => setText(e.target.value)}

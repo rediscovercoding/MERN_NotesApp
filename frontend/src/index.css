@@ -93,9 +93,14 @@ form button {
 div.error {
   padding: 10px;
   color: var(--error);
+  border-radius: 5px;
+  margin-top: 5px;
 }
 
 .noteDate {
   font-size: small;
   color: #545454d4;
+}
+.error {
+  border: 1px solid var(--error);
 }
