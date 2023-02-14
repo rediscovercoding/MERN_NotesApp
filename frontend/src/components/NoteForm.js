@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNotesContext } from "../hooks/useNotesContext";
 
 const NoteForm = () => {
+  const { dispatch } = useNotesContext();
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [error, setError] = useState(null);
@@ -24,6 +26,7 @@ const NoteForm = () => {
       setTitle("");
       setText("");
       setError(null);
+      dispatch({ type: "CREATE_NOTE", payload: json });
     }
   };
   return (
@@ -31,6 +34,7 @@ const NoteForm = () => {
       <h3>Add New Note</h3>
       <label>Note Title</label>
       <input
+        className="inputTitle"
         type="text"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
